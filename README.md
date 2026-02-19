@@ -1,2 +1,3 @@
-# CFF
-CFF website landing page
+# CFF Landing Page
+
+Project setup via Gemini.

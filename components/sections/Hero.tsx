@@ -6,90 +6,92 @@ import Image from "next/image";
 
 export default function Hero() {
     return (
-        <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden bg-cff-beige pt-20">
-            {/* Background Texture Overlay (Optional) */}
-            <div className="absolute inset-0 opacity-10 bg-[url('/pattern.png')] pointer-events-none" />
+        <section className="relative min-h-[90vh] lg:min-h-screen flex items-center overflow-hidden bg-black pt-20 border-b-4 border-cff-yellow w-full">
+            {/* Bold Diagonal Background Pattern (Left Side Only) */}
+            <div className="absolute top-0 left-0 bottom-0 w-[80px] md:w-[150px] xl:w-[220px] bg-cff-pattern-bold opacity-100 pointer-events-none shadow-[20px_0_50px_rgba(0,0,0,0.9)] z-0" />
+            <div className="absolute top-0 left-[80px] md:left-[150px] xl:left-[220px] bottom-0 w-32 bg-gradient-to-r from-black/90 to-transparent z-0 pointer-events-none" />
 
-            <div className="container mx-auto px-6 grid md:grid-cols-2 gap-12 items-center z-10 w-full">
-
+            <div className="w-full flex flex-col xl:flex-row gap-12 xl:gap-16 items-center z-10 pt-12 pb-20 pr-6 xl:pr-12 pl-[110px] md:pl-[190px] xl:pl-[280px]">
                 {/* Left Content */}
                 <motion.div
                     initial={{ opacity: 0, x: -50 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.8, ease: "easeOut" }}
-                    className="space-y-6 max-w-xl"
+                    className="space-y-8 max-w-2xl w-full xl:w-1/2"
                 >
-                    <h1 className="text-5xl md:text-7xl font-bold leading-tight text-cff-brown">
-                        Corporate Food Experiences, <span className="italic text-cff-terracotta">Reimagined.</span>
-                    </h1>
-                    <p className="text-lg md:text-xl text-cff-brown/80 max-w-md">
-                        Delivering Flavor, Fun & Connection at Every Workplace.
-                    </p>
+                    <div className="space-y-2">
+                        <h1 className="text-5xl md:text-7xl font-black leading-tight text-white uppercase tracking-tighter">
+                            Corporate Food Fun: <br />
+                            <span className="text-cff-yellow">Eat. Work. Crave.</span>
+                        </h1>
+                        <p className="text-lg md:text-xl text-white/80 max-w-md font-medium border-l-4 border-cff-gold pl-4 mt-6">
+                            Powering Corporate Dining & QSR Experiences Since 2015.
+                        </p>
+                    </div>
 
-                    <div className="flex flex-col sm:flex-row gap-4 pt-4">
-                        <Button size="lg" className="bg-cff-terracotta hover:bg-cff-terracotta/90 text-white px-8 rounded-full shadow-lg hover:shadow-xl transition-all hover:-translate-y-1">
-                            Explore Brands
+                    <div className="flex flex-col sm:flex-row gap-5 pt-6">
+                        <Button size="lg" className="bg-cff-yellow text-black hover:bg-cff-gold font-bold px-8 py-6 rounded-full shadow-[0_0_20px_rgba(255,195,0,0.4)] hover:shadow-[0_0_30px_rgba(255,195,0,0.6)] transition-all uppercase tracking-wide text-sm">
+                            Explore Our Brands
                         </Button>
-                        <Button size="lg" variant="outline" className="border-cff-brown text-cff-brown hover:bg-cff-brown/5 rounded-full px-8">
-                            Franchise With Us
+                        <Button size="lg" variant="outline" className="border-2 border-cff-yellow text-cff-yellow hover:bg-cff-yellow hover:text-black font-bold px-8 py-6 rounded-full uppercase tracking-wide text-sm transition-all bg-transparent">
+                            Partner With Us
                         </Button>
+                    </div>
+
+                    {/* Services Highlights - Circular Badges */}
+                    <div className="pt-8 flex flex-wrap gap-4">
+                        <div className="flex items-center gap-2 bg-white/5 border border-cff-yellow/30 px-4 py-2 rounded-full">
+                            <div className="w-2 h-2 rounded-full bg-cff-yellow"></div>
+                            <span className="text-sm font-bold text-white uppercase tracking-wider">Corporate Dining</span>
+                        </div>
+                        <div className="flex items-center gap-2 bg-white/5 border border-cff-yellow/30 px-4 py-2 rounded-full">
+                            <div className="w-2 h-2 rounded-full bg-cff-yellow"></div>
+                            <span className="text-sm font-bold text-white uppercase tracking-wider">QSR</span>
+                        </div>
+                        <div className="flex items-center gap-2 bg-white/5 border border-cff-yellow/30 px-4 py-2 rounded-full">
+                            <div className="w-2 h-2 rounded-full bg-cff-yellow"></div>
+                            <span className="text-sm font-bold text-white uppercase tracking-wider">Events</span>
+                        </div>
                     </div>
                 </motion.div>
 
-                {/* Right Image Collage */}
+                {/* Right Cards Showcase */}
                 <motion.div
                     initial={{ opacity: 0, scale: 0.9 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 0.8, delay: 0.2 }}
-                    className="relative h-[400px] md:h-[600px] w-full flex items-center justify-center"
+                    className="relative lg:h-[600px] w-full flex flex-col sm:flex-row items-center justify-center gap-6"
                 >
-                    {/* Main Large Image */}
-                    <motion.div
-                        animate={{ y: [0, -10, 0] }}
-                        transition={{ repeat: Infinity, duration: 6, ease: "easeInOut" }}
-                        className="absolute z-20 w-[60%] h-[70%] rounded-2xl overflow-hidden shadow-2xl border-4 border-white transform -rotate-3"
-                    >
-                        <div className="w-full h-full bg-cff-cream flex items-center justify-center text-cff-brown/50 text-2xl font-bold">
-                            Corporate Kiosk
+                    {/* Brands Card 1: CRAVE */}
+                    <div className="w-full sm:w-[280px] h-[380px] rounded-[2rem] bg-cff-dark border border-cff-yellow/30 overflow-hidden shadow-2xl relative group transform hover:-translate-y-2 transition-all duration-300">
+                        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent z-10" />
+                        <div className="absolute bottom-6 left-6 z-20">
+                            <h3 className="text-3xl font-black text-white uppercase tracking-wider">Crave</h3>
+                            <p className="text-cff-yellow font-bold text-sm mt-1 uppercase tracking-widest">Love Every Bite</p>
                         </div>
-                    </motion.div>
 
-                    {/* Top Right Floating Image */}
-                    <motion.div
-                        animate={{ y: [0, 15, 0] }}
-                        transition={{ repeat: Infinity, duration: 7, ease: "easeInOut", delay: 1 }}
-                        className="absolute top-0 right-0 w-[40%] h-[40%] rounded-2xl overflow-hidden shadow-xl border-4 border-white transform rotate-3 z-10"
-                    >
-                        <div className="w-full h-full bg-cff-sage flex items-center justify-center text-white/50 text-xl font-bold">
-                            Coffee Station
+                        <div className="absolute inset-0 w-full h-full flex items-center justify-center z-0 opacity-40 group-hover:opacity-100 transition-opacity duration-300 p-8">
+                            <Image src="/crave_logo.png" alt="Crave Logo" fill className="object-contain object-center absolute inset-0 m-auto p-12" />
                         </div>
-                    </motion.div>
+                    </div>
 
-                    {/* Bottom Left Floating Image */}
-                    <motion.div
-                        animate={{ y: [0, -12, 0] }}
-                        transition={{ repeat: Infinity, duration: 8, ease: "easeInOut", delay: 0.5 }}
-                        className="absolute bottom-0 left-4 w-[45%] h-[40%] rounded-2xl overflow-hidden shadow-xl border-4 border-white transform -rotate-2 z-30"
-                    >
-                        <div className="w-full h-full bg-cff-terracotta flex items-center justify-center text-white/50 text-xl font-bold">
-                            Buffet Setup
+                    {/* Brands Card 2: ADDA */}
+                    <div className="w-full sm:w-[280px] h-[380px] rounded-[2rem] bg-cff-dark border border-cff-yellow/30 overflow-hidden shadow-2xl relative group transform sm:translate-y-12 hover:translate-y-8 transition-all duration-300">
+                        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent z-10" />
+                        <div className="absolute bottom-6 left-6 z-20">
+                            <h3 className="text-3xl font-black text-white uppercase tracking-wider">Adda</h3>
+                            <p className="text-cff-yellow font-bold text-sm mt-1 uppercase tracking-widest">Eat. Work. Crave</p>
                         </div>
-                    </motion.div>
+
+                        <div className="absolute inset-0 w-full h-full flex items-center justify-center z-0 opacity-40 group-hover:opacity-100 transition-opacity duration-300 p-8">
+                            <Image src="/adda_logo.png" alt="Adda Logo" fill className="object-contain object-center absolute inset-0 m-auto p-12" />
+                        </div>
+                    </div>
                 </motion.div>
-
             </div>
 
-            {/* Scroll Indicator */}
-            <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 1.5, duration: 1 }}
-                className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce text-cff-brown/50"
-            >
-                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M7 13l5 5 5-5M7 6l5 5 5-5" />
-                </svg>
-            </motion.div>
+            {/* Circular Bottom Shape */}
+            <div className="absolute -bottom-[50px] left-1/2 -translate-x-1/2 w-[150%] h-[100px] bg-black rounded-[100%] z-20 border-t-4 border-cff-yellow hidden sm:block"></div>
         </section>
     );
 }

@@ -9,12 +9,11 @@ const config: Config = {
     theme: {
         extend: {
             colors: {
-                'cff-beige': '#DEC098',
-                'cff-terracotta': '#A3472C',
-                'cff-sage': '#2F4F3E',
-                'cff-brown': '#3B2A1E',
-                'cff-sand': '#E8D3B2',
-                'cff-cream': '#F5E6CE',
+                'cff-black': '#000000',
+                'cff-yellow': '#FFC300',
+                'cff-gold': '#D4AF37',
+                'cff-dark': '#1A1A1A',
+                'cff-gray': '#2D2D2D',
             },
             backgroundImage: {
                 "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",

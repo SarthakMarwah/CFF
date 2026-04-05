@@ -4,11 +4,34 @@
 
 @layer base {
   :root {
-    --background: 240 10% 3.9%;
-    --foreground: 0 0% 98%;
+    --background: 0 0% 0%;
+    --foreground: 0 0% 100%;
+  }
+
+  body {
+    @apply bg-cff-black text-white antialiased;
   }
 }
 
 html {
     scroll-behavior: smooth;
+}
+
+@layer utilities {
+  .bg-cff-pattern {
+    /* Thick yellow and black diagonal crossing lines */
+    background: 
+      linear-gradient(45deg, transparent 40%, rgba(255, 195, 0, 0.1) 40%, rgba(255, 195, 0, 0.1) 60%, transparent 60%),
+      linear-gradient(-45deg, transparent 40%, rgba(255, 195, 0, 0.1) 40%, rgba(255, 195, 0, 0.1) 60%, transparent 60%);
+    background-size: 15rem 15rem;
+  }
+  
+  .bg-cff-pattern-bold {
+    /* Bold yellow and black diagonal lines for stronger visual identity */
+    background: 
+      linear-gradient(45deg, transparent 40%, rgba(255, 195, 0, 1) 40%, rgba(255, 195, 0, 1) 60%, transparent 60%),
+      linear-gradient(-45deg, transparent 40%, rgba(255, 195, 0, 1) 40%, rgba(255, 195, 0, 1) 60%, transparent 60%);
+    background-size: 25rem 25rem;
+    background-color: #000000;
+  }
 }

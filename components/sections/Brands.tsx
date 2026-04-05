@@ -1,83 +1,109 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Button } from "@/components/ui/button";
+import { Check, CheckCircle2 } from "lucide-react";
+import Image from "next/image";
 
 export default function Brands() {
     return (
-        <section id="brands" className="py-24 bg-cff-beige relative">
-            <div className="container mx-auto px-6">
+        <section id="brands" className="py-24 bg-black relative">
+            {/* Background pattern stripe */}
+            <div className="absolute top-1/2 left-0 right-0 h-96 -translate-y-1/2 bg-cff-pattern opacity-[0.03] pointer-events-none"></div>
 
+            <div className="container mx-auto px-6 max-w-6xl relative z-10">
                 <div className="text-center mb-16">
-                    <motion.h2
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        className="text-4xl md:text-5xl font-bold text-cff-brown mb-4"
-                    >
-                        Our Brands
-                    </motion.h2>
-                    <p className="text-cff-brown/70 max-w-2xl mx-auto text-lg">
-                        Discover our specialized food concepts designed to elevate the corporate experience.
+                    <h2 className="text-4xl md:text-5xl font-black text-white uppercase tracking-tighter mb-4">
+                        Our Core <span className="text-cff-yellow">Brands</span>
+                    </h2>
+                    <p className="text-cff-gold text-lg font-medium uppercase tracking-widest max-w-2xl mx-auto">
+                        Two Distinct Experiences. One Standard of Excellence.
                     </p>
                 </div>
 
-                <div className="grid lg:grid-cols-2 gap-8 md:gap-12">
+                <div className="grid lg:grid-cols-2 gap-10">
 
-                    {/* Adda Card */}
+                    {/* Brand 1: CFF Adda */}
                     <motion.div
-                        initial={{ opacity: 0, x: -50 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        whileHover={{ scale: 1.02 }}
-                        transition={{ type: "spring", stiffness: 300 }}
-                        className="relative h-[480px] rounded-3xl overflow-hidden shadow-2xl group cursor-pointer bg-cff-terracotta"
+                        initial={{ opacity: 0, scale: 0.95 }}
+                        whileInView={{ opacity: 1, scale: 1 }}
+                        viewport={{ once: true }}
+                        className="bg-cff-dark rounded-[2.5rem] p-8 md:p-12 border-2 border-white/5 hover:border-cff-yellow/50 transition-colors duration-500 relative group overflow-hidden"
                     >
-                        {/* Background Image Placeholder */}
-                        <div className="absolute inset-0 bg-cff-terracotta transition-colors duration-500 group-hover:bg-cff-terracotta/90 mix-blend-multiply">
-                            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
+                        {/* Hover glow */}
+                        <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full blur-[80px] -translate-y-1/2 translate-x-1/2 group-hover:bg-cff-yellow/10 transition-colors duration-500"></div>
+
+                        <div className="flex items-center gap-6 mb-8 relative z-10">
+                            <div className="w-20 h-20 rounded-xl bg-white flex items-center justify-center shadow-lg border border-white/10 relative overflow-hidden p-2">
+                                <Image src="/adda_logo.png" alt="Adda Logo" fill className="object-contain p-2" />
+                            </div>
+                            <div>
+                                <h3 className="text-4xl font-black text-white uppercase tracking-wide">CFF Adda</h3>
+                                <p className="text-cff-yellow font-bold uppercase tracking-widest text-sm mt-1">Eat. Work. Crave</p>
+                            </div>
                         </div>
 
-                        <div className="absolute bottom-0 left-0 p-8 md:p-12 w-full z-10">
-                            <h3 className="text-6xl font-bold text-white mb-2 font-serif italic tracking-tighter">Adda</h3>
-                            <p className="text-xl text-white/90 font-medium mb-4">A Place to Unwind & Connect</p>
+                        <div className="space-y-6 relative z-10">
+                            <p className="text-white/80 text-lg leading-relaxed mb-8 border-l-4 border-white pl-4">
+                                The energetic, budget-friendly QSR designed for community and high-volume corporate setups.
+                            </p>
 
-                            <div className="flex gap-3 mb-6 text-sm text-white/80">
-                                <span className="bg-white/10 px-3 py-1 rounded-full backdrop-blur-sm">• Social Kiosks</span>
-                                <span className="bg-white/10 px-3 py-1 rounded-full backdrop-blur-sm">• Beverages</span>
-                                <span className="bg-white/10 px-3 py-1 rounded-full backdrop-blur-sm">• Quick Bites</span>
-                            </div>
-
-                            <Button className="bg-white/90 text-cff-terracotta hover:bg-white rounded-lg px-8 py-6 text-lg font-medium shadow-lg hover:shadow-xl transition-all w-full md:w-auto">
-                                Discover Adda
-                            </Button>
+                            <ul className="space-y-4">
+                                <li className="flex items-center gap-4 text-white/70 font-medium">
+                                    <CheckCircle2 className="text-cff-yellow shrink-0" size={24} />
+                                    <span>High-throughput Budget QSR</span>
+                                </li>
+                                <li className="flex items-center gap-4 text-white/70 font-medium">
+                                    <CheckCircle2 className="text-cff-yellow shrink-0" size={24} />
+                                    <span>Community Catering & Events</span>
+                                </li>
+                                <li className="flex items-center gap-4 text-white/70 font-medium">
+                                    <CheckCircle2 className="text-cff-yellow shrink-0" size={24} />
+                                    <span>Bhandaras & Specialized Catering</span>
+                                </li>
+                            </ul>
                         </div>
                     </motion.div>
 
-                    {/* Crave Card */}
+                    {/* Brand 2: CFF CRAVE */}
                     <motion.div
-                        initial={{ opacity: 0, x: 50 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        whileHover={{ scale: 1.02 }}
-                        transition={{ type: "spring", stiffness: 300, delay: 0.1 }}
-                        className="relative h-[480px] rounded-3xl overflow-hidden shadow-2xl group cursor-pointer bg-cff-sage"
+                        initial={{ opacity: 0, scale: 0.95 }}
+                        whileInView={{ opacity: 1, scale: 1 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: 0.2 }}
+                        className="bg-cff-dark rounded-[2.5rem] p-8 md:p-12 border-2 border-white/5 hover:border-cff-gold/80 transition-colors duration-500 relative group overflow-hidden"
                     >
-                        {/* Background Image Placeholder */}
-                        <div className="absolute inset-0 bg-cff-sage transition-colors duration-500 group-hover:bg-cff-sage/90 mix-blend-multiply">
-                            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
+                        {/* Hover glow */}
+                        <div className="absolute bottom-0 left-0 w-64 h-64 bg-white/5 rounded-full blur-[80px] translate-y-1/2 -translate-x-1/2 group-hover:bg-cff-gold/15 transition-colors duration-500"></div>
+
+                        <div className="flex items-center gap-6 mb-8 relative z-10">
+                            <div className="w-20 h-20 rounded-xl bg-black flex items-center justify-center shadow-lg border-2 border-cff-gold relative overflow-hidden p-2">
+                                <Image src="/crave_logo.png" alt="Crave Logo" fill className="object-contain p-2" />
+                            </div>
+                            <div>
+                                <h3 className="text-4xl font-black text-white uppercase tracking-wide">CFF Crave</h3>
+                                <p className="text-cff-gold font-bold uppercase tracking-widest text-sm mt-1">Love Every Bite</p>
+                            </div>
                         </div>
 
-                        <div className="absolute bottom-0 left-0 p-8 md:p-12 w-full z-10">
-                            <h3 className="text-6xl font-bold text-white mb-2 font-serif">Crave</h3>
-                            <p className="text-xl text-white/90 font-medium mb-4 italic">Savor the Moment</p>
+                        <div className="space-y-6 relative z-10">
+                            <p className="text-white/80 text-lg leading-relaxed mb-8 border-l-4 border-cff-gold pl-4">
+                                The premium corporate QSR bringing gourmet meals and an elevated cafe experience to the office.
+                            </p>
 
-                            <div className="flex gap-3 mb-6 text-sm text-white/80">
-                                <span className="bg-white/10 px-3 py-1 rounded-full backdrop-blur-sm">• Premium Cafe</span>
-                                <span className="bg-white/10 px-3 py-1 rounded-full backdrop-blur-sm">• Gourmet Meals</span>
-                                <span className="bg-white/10 px-3 py-1 rounded-full backdrop-blur-sm">• Coffee</span>
-                            </div>
-
-                            <Button className="bg-white/90 text-cff-sage hover:bg-white rounded-lg px-8 py-6 text-lg font-medium shadow-lg hover:shadow-xl transition-all w-full md:w-auto">
-                                Discover Crave
-                            </Button>
+                            <ul className="space-y-4">
+                                <li className="flex items-center gap-4 text-white/70 font-medium">
+                                    <CheckCircle2 className="text-cff-gold shrink-0" size={24} />
+                                    <span>Premium Corporate Ambience</span>
+                                </li>
+                                <li className="flex items-center gap-4 text-white/70 font-medium">
+                                    <CheckCircle2 className="text-cff-gold shrink-0" size={24} />
+                                    <span>Gourmet Office Dining</span>
+                                </li>
+                                <li className="flex items-center gap-4 text-white/70 font-medium">
+                                    <CheckCircle2 className="text-cff-gold shrink-0" size={24} />
+                                    <span>Executive Lunches & Meetings</span>
+                                </li>
+                            </ul>
                         </div>
                     </motion.div>
 

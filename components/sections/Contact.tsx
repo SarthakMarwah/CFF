@@ -46,7 +46,7 @@ export default function Contact() {
                         <div className="space-y-4 text-white/80 font-medium">
                             <p className="flex items-center gap-4">
                                 <span className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-cff-yellow border border-white/10">📧</span>
-                                contact@corporatefoodfun.com
+                                connect@corporatefoodfun.com
                             </p>
                             <p className="flex items-center gap-4">
                                 <span className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-cff-yellow border border-white/10">📞</span>

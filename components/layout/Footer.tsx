@@ -57,7 +57,7 @@ export default function Footer() {
                                 <div className="w-8 h-8 rounded-full bg-cff-yellow/10 flex items-center justify-center text-cff-yellow">
                                     <Mail size={16} />
                                 </div>
-                                <span className="font-medium">contact@corporatefoodfun.com</span>
+                                <span className="font-medium">connect@corporatefoodfun.com</span>
                             </li>
                             <li className="flex gap-3 items-center">
                                 <div className="w-8 h-8 rounded-full bg-cff-yellow/10 flex items-center justify-center text-cff-yellow">

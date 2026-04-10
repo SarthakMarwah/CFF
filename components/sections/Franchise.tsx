@@ -43,15 +43,21 @@ export default function Franchise() {
                         </div>
 
                         <form className="space-y-4">
+                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <div>
+                                    <label className="block text-xs font-bold text-white/50 uppercase tracking-wider mb-2">Mobile Number <span className="text-cff-yellow">*</span></label>
+                                    <Input type="tel" placeholder="+91 XXXXX XXXXX" className="bg-white/5 border-white/10 text-white placeholder:text-white/30 rounded-xl font-medium" />
+                                </div>
+                                <div>
+                                    <label className="block text-xs font-bold text-white/50 uppercase tracking-wider mb-2">Email Address <span className="text-cff-yellow">*</span></label>
+                                    <Input type="email" placeholder="your@email.com" className="bg-white/5 border-white/10 text-white placeholder:text-white/30 rounded-xl font-medium" />
+                                </div>
+                            </div>
                             <div>
                                 <label className="block text-xs font-bold text-white/50 uppercase tracking-wider mb-2">Upload Resume</label>
                                 <div className="border border-dashed border-white/20 rounded-xl p-6 text-center cursor-pointer hover:border-cff-yellow/50 transition-colors bg-white/5">
                                     <span className="text-white/70 text-sm">Click to browse or drag file here</span>
                                 </div>
-                            </div>
-                            <div>
-                                <label className="block text-xs font-bold text-white/50 uppercase tracking-wider mb-2">Or Email Us</label>
-                                <Input type="email" placeholder="careers@corporatefoodfun.com" disabled className="bg-white/5 border-white/10 text-white placeholder:text-white/30 rounded-xl font-medium" />
                             </div>
                             <Button className="w-full mt-4 bg-white text-black hover:bg-cff-yellow hover:text-black font-bold py-6 rounded-full uppercase tracking-wider">
                                 Apply Now
@@ -86,9 +92,15 @@ export default function Franchise() {
                                     </div>
                                 </div>
 
-                                <div>
-                                    <label className="block text-xs font-bold text-black/60 uppercase tracking-wider mb-2">Contact Details</label>
-                                    <Input type="text" placeholder="Phone or Email" className="bg-white/60 border-black/10 text-black placeholder:text-black/30 rounded-xl focus-visible:ring-black" />
+                                <div className="grid grid-cols-2 gap-4">
+                                    <div>
+                                        <label className="block text-xs font-bold text-black/60 uppercase tracking-wider mb-2">Phone <span className="text-red-600">*</span></label>
+                                        <Input type="tel" placeholder="+91 XXXXX XXXXX" className="bg-white/60 border-black/10 text-black placeholder:text-black/30 rounded-xl focus-visible:ring-black" />
+                                    </div>
+                                    <div>
+                                        <label className="block text-xs font-bold text-black/60 uppercase tracking-wider mb-2">Email <span className="text-red-600">*</span></label>
+                                        <Input type="email" placeholder="you@email.com" className="bg-white/60 border-black/10 text-black placeholder:text-black/30 rounded-xl focus-visible:ring-black" />
+                                    </div>
                                 </div>
 
                                 <div>

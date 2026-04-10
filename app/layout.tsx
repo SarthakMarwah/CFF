@@ -8,6 +8,10 @@ const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 export const metadata: Metadata = {
     title: "Corporate Food & Fun (CFF)",
     description: "Premium corporate food services and experiences.",
+    icons: {
+        icon: "/cff_logo.png",
+        apple: "/cff_logo.png",
+    },
 };
 
 export default function RootLayout({

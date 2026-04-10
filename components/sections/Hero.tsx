@@ -87,6 +87,19 @@ export default function Hero() {
                             <Image src="/adda_logo.png" alt="Adda Logo" fill className="object-contain object-center absolute inset-0 m-auto p-12" />
                         </div>
                     </div>
+
+                    {/* CFF Brand Stamp — positioned outside ADDA card, bottom-left tangent to ADDA's top-right */}
+                    <div className="absolute top-0 right-0 sm:-top-1 sm:right-5 w-60 h-60 md:w-50 md:h-40 z-20 hidden sm:block">
+                        {/* Replace this placeholder with your actual stamp image: */}
+                        <Image src="/cff_stamp.png" alt="CFF Stamp" fill className="object-contain" />
+                        
+                        {/* <div className="w-full h-full rounded-full border-2 border-dashed border-cff-yellow/40 flex items-center justify-center bg-black/80 backdrop-blur-sm">
+                            <div className="w-[85%] h-[85%] rounded-full border border-cff-yellow/30 flex flex-col items-center justify-center gap-1">
+                                <span className="text-cff-yellow font-black text-xs md:text-sm uppercase tracking-widest">CFF</span>
+                                <span className="text-white/30 text-[8px] md:text-[9px] uppercase tracking-wider">Stamp Here</span>
+                            </div>
+                        </div> */}
+                    </div>
                 </motion.div>
             </div>
 

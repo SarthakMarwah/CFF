@@ -1,14 +1,186 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { useState, useEffect, useCallback } from "react";
+import Image from "next/image";
+import { motion, AnimatePresence } from "framer-motion";
 
-const galleryItems = [
-    { type: "Food", title: "Premium Indian Thali", colSpan: "col-span-1 md:col-span-2", rowSpan: "row-span-2" },
-    { type: "Food", title: "Gourmet Burgers", colSpan: "col-span-1", rowSpan: "row-span-1" },
-    { type: "Interior", title: "CFF Adda Kiosk", colSpan: "col-span-1", rowSpan: "row-span-1" },
-    { type: "Interior", title: "Corporate Cafe Setup", colSpan: "col-span-1", rowSpan: "row-span-2" },
-    { type: "Food", title: "Authentic Chinese", colSpan: "col-span-1 md:col-span-2", rowSpan: "row-span-1" },
+/**
+ * Gallery Configuration
+ * ---------------------
+ * Each item has an `images` array. Replace the placeholder paths
+ * with your actual image paths (from /public or external URLs).
+ *
+ * Example:
+ *   images: ["/gallery/thali-1.jpg", "/gallery/thali-2.jpg", "/gallery/thali-3.jpg"]
+ *
+ * The slideshow auto-cycles every 3 seconds per frame.
+ */
+
+interface GalleryItem {
+    type: string;
+    title: string;
+    colSpan: string;
+    rowSpan: string;
+    images: string[]; // Add 4-5 image paths per frame
+}
+
+const galleryItems: GalleryItem[] = [
+    {
+        type: "Food",
+        title: "Premium Indian Thali",
+        colSpan: "col-span-1 md:col-span-2",
+        rowSpan: "row-span-2",
+        images: [
+            // Replace with your actual images:
+            // "/gallery/thali-1.jpg",
+            // "/gallery/thali-2.jpg",
+            // "/gallery/thali-3.jpg",
+            // "/gallery/thali-4.jpg",
+        ],
+    },
+    {
+        type: "Food",
+        title: "Gourmet Burgers",
+        colSpan: "col-span-1",
+        rowSpan: "row-span-1",
+        images: [
+            // "/gallery/burger-1.jpg",
+            // "/gallery/burger-2.jpg",
+            // "/gallery/burger-3.jpg",
+        ],
+    },
+    {
+        type: "Interior",
+        title: "CFF Adda Kiosk",
+        colSpan: "col-span-1",
+        rowSpan: "row-span-1",
+        images: [
+            // "/gallery/kiosk-1.jpg",
+            // "/gallery/kiosk-2.jpg",
+            // "/gallery/kiosk-3.jpg",
+            // "/gallery/kiosk-4.jpg",
+        ],
+    },
+    {
+        type: "Interior",
+        title: "Corporate Cafe Setup",
+        colSpan: "col-span-1",
+        rowSpan: "row-span-2",
+        images: [
+            // "/gallery/cafe-1.jpg",
+            // "/gallery/cafe-2.jpg",
+            // "/gallery/cafe-3.jpg",
+            // "/gallery/cafe-4.jpg",
+            // "/gallery/cafe-5.jpg",
+        ],
+    },
+    {
+        type: "Food",
+        title: "Authentic Chinese",
+        colSpan: "col-span-1 md:col-span-2",
+        rowSpan: "row-span-1",
+        images: [
+            // "/gallery/chinese-1.jpg",
+            // "/gallery/chinese-2.jpg",
+            // "/gallery/chinese-3.jpg",
+        ],
+    },
 ];
+
+/** Duration in ms between image transitions */
+const SLIDE_INTERVAL = 3000;
+
+function GalleryFrame({ item, index }: { item: GalleryItem; index: number }) {
+    const [currentIndex, setCurrentIndex] = useState(0);
+    const hasImages = item.images.length > 0;
+    const multipleImages = item.images.length > 1;
+
+    const advance = useCallback(() => {
+        if (!multipleImages) return;
+        setCurrentIndex((prev) => (prev + 1) % item.images.length);
+    }, [multipleImages, item.images.length]);
+
+    useEffect(() => {
+        if (!multipleImages) return;
+        const timer = setInterval(advance, SLIDE_INTERVAL);
+        return () => clearInterval(timer);
+    }, [advance, multipleImages]);
+
+    return (
+        <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ delay: index * 0.1 }}
+            className={`${item.colSpan} ${item.rowSpan} relative group rounded-3xl overflow-hidden cursor-pointer bg-cff-dark border border-white/5`}
+        >
+            {/* Image slideshow layer */}
+            {hasImages ? (
+                <AnimatePresence mode="wait">
+                    <motion.div
+                        key={currentIndex}
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        transition={{ duration: 0.8, ease: "easeInOut" }}
+                        className="absolute inset-0"
+                    >
+                        <Image
+                            src={item.images[currentIndex]}
+                            alt={`${item.title} - ${currentIndex + 1}`}
+                            fill
+                            className="object-cover"
+                            sizes="(max-width: 768px) 100vw, 50vw"
+                        />
+                    </motion.div>
+                </AnimatePresence>
+            ) : (
+                /* Placeholder when no images are attached yet */
+                <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 text-white/10">
+                    {/* Camera icon placeholder */}
+                    <svg className="w-12 h-12" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" />
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z" />
+                    </svg>
+                    <span className="text-xs uppercase tracking-widest font-bold">Add Photos</span>
+                    <span className="text-[10px] uppercase tracking-wider opacity-50">4-5 images</span>
+                </div>
+            )}
+
+            {/* Title watermark (always visible) */}
+            <div className="absolute inset-0 flex items-center justify-center text-white/5 font-black text-4xl uppercase overflow-hidden p-4 text-center break-words leading-none pointer-events-none">
+                {item.title}
+            </div>
+
+            {/* Hover overlay */}
+            <div className="absolute inset-0 bg-gradient-to-tr from-cff-yellow/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity z-10 duration-500"></div>
+
+            {/* Circular Accent Shape */}
+            <div className="absolute -right-8 -top-8 w-24 h-24 rounded-full bg-cff-yellow/20 group-hover:bg-cff-yellow/50 group-hover:scale-150 transition-all duration-700 ease-out z-0"></div>
+
+            {/* Slide indicator dots (only when multiple images exist) */}
+            {multipleImages && (
+                <div className="absolute bottom-14 left-1/2 -translate-x-1/2 flex gap-1.5 z-30 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    {item.images.map((_, i) => (
+                        <button
+                            key={i}
+                            onClick={() => setCurrentIndex(i)}
+                            className={`w-1.5 h-1.5 rounded-full transition-all duration-300 ${i === currentIndex ? "bg-cff-yellow w-4" : "bg-white/40 hover:bg-white/70"
+                                }`}
+                            aria-label={`Go to image ${i + 1}`}
+                        />
+                    ))}
+                </div>
+            )}
+
+            {/* Item details on hover */}
+            <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black via-black/80 to-transparent translate-y-full group-hover:translate-y-0 transition-transform duration-300 z-20">
+                <span className="text-cff-yellow text-xs font-bold uppercase tracking-widest">{item.type}</span>
+                <h3 className="text-white font-bold text-xl uppercase tracking-wide mt-1">{item.title}</h3>
+            </div>
+        </motion.div>
+    );
+}
 
 export default function Gallery() {
     return (
@@ -25,30 +197,7 @@ export default function Gallery() {
 
                 <div className="grid grid-cols-1 md:grid-cols-4 auto-rows-[250px] gap-4">
                     {galleryItems.map((item, index) => (
-                        <motion.div
-                            key={index}
-                            initial={{ opacity: 0, scale: 0.95 }}
-                            whileInView={{ opacity: 1, scale: 1 }}
-                            viewport={{ once: true }}
-                            transition={{ delay: index * 0.1 }}
-                            className={`${item.colSpan} ${item.rowSpan} relative group rounded-3xl overflow-hidden cursor-pointer bg-cff-dark border border-white/5`}
-                        >
-                            {/* Placeholder overlay since we don't have images yet */}
-                            <div className="absolute inset-0 bg-gradient-to-tr from-cff-yellow/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity z-10 duration-500"></div>
-
-                            <div className="absolute inset-0 flex items-center justify-center text-white/5 font-black text-4xl uppercase overflow-hidden p-4 text-center break-words leading-none pointer-events-none">
-                                {item.title}
-                            </div>
-
-                            {/* Circular Accent Shape */}
-                            <div className="absolute -right-8 -top-8 w-24 h-24 rounded-full bg-cff-yellow/20 group-hover:bg-cff-yellow/50 group-hover:scale-150 transition-all duration-700 ease-out z-0"></div>
-
-                            {/* Item details on hover */}
-                            <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black via-black/80 to-transparent translate-y-full group-hover:translate-y-0 transition-transform duration-300 z-20">
-                                <span className="text-cff-yellow text-xs font-bold uppercase tracking-widest">{item.type}</span>
-                                <h3 className="text-white font-bold text-xl uppercase tracking-wide mt-1">{item.title}</h3>
-                            </div>
-                        </motion.div>
+                        <GalleryFrame key={index} item={item} index={index} />
                     ))}
                 </div>
 
